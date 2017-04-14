@@ -1,0 +1,81 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<div style="border:1px solid black; margin: 10px">
+		<h2>File Upload</h2>
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<table style="border:1px solid black; margin: 10px">
+				<tr>
+					<td>File to upload:</td>
+					<td><input type="file" name="file" /></td>
+				</tr>
+				<tr>
+					<td>File Name:</td>
+					<td><input type="text" name="filename" /></td>
+				</tr>
+				<tr>
+					<td>File Description:</td>
+					<td><input type="text" name="filedesc" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Upload" /></td>
+				</tr>
+			</table>
+		</form>
+		<div th:if="${message}">
+			<h2 th:text="${message}" />
+	</div>
+	</div>
+	<div
+		style="border:1px solid black; margin: 10px">
+		<h2>Meta-Data search with FileId</h2>
+		<form method="GET" action="/metadata">
+			<table style="border:1px solid black; margin: 10px">
+				<tr>
+					<td>File Name for Meta-data</td>
+					<td><input type="text" name="filename" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="search" /></td>
+				</tr>
+			</table>
+		</form>
+
+		<div>
+			<ul>
+				<li th:each="data : ${metadata}"><span th:text="${data}"></span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+		<div style="border:1px solid black; margin: 10px">
+		<h2>Search Files</h2>
+		<form method="GET" action="/search">
+			<table style="border:1px solid black; margin: 10px">
+				<tr>
+					<td>File Name</td>
+					<td><input type="text" name="filename" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="search" /></td>
+				</tr>
+			</table>
+		</form>
+
+	<div style="border:1px solid black; margin: 10px">
+		<ul>
+			<li th:each="file : ${files}">
+			FileName: <span th:text="${file.key}"></span> File Download Path
+			<a th:href="${file.value}" th:text="${file.value}" /></li>
+		</ul>
+	</div>
+	</div>
+
+
+
+</body>
+</html>
